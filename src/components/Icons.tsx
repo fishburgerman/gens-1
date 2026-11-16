@@ -80,3 +80,9 @@ export const ThoughtfulIcon = (p: IconProps) => (
   // a small leaf
   <Base {...p}><path d="M5.5 18.5C5.5 10 10.5 5.5 19 5.5c0 8.5-4.5 13-13 13z" /><path d="M5.5 18.5 13 11" /></Base>
 )
+export const SlidersIcon = (p: IconProps) => (
+  <Base {...p}><path d="M4.5 7.5h9M17.5 7.5h2M4.5 16.5h2M10.5 16.5h9" /><circle cx="15.5" cy="7.5" r="2" /><circle cx="8.5" cy="16.5" r="2" /></Base>
+)
+export const GlobeIcon = (p: IconProps) => (
+  <Base {...p}><circle cx="12" cy="12" r="8.3" /><path d="M3.9 12h16.2M12 3.7c2.3 2.3 3.4 5.1 3.4 8.3s-1.1 6-3.4 8.3c-2.3-2.3-3.4-5.1-3.4-8.3s1.1-6 3.4-8.3z" /></Base>
+)

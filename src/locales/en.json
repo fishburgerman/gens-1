@@ -1,0 +1,157 @@
+{
+  "common": {
+    "appName": "gens",
+    "cancel": "Cancel",
+    "close": "Close",
+    "save": "Save",
+    "back": "Back",
+    "you": "You",
+    "sample": "Sample",
+    "sampleHint": "Sample post included with the demo. Not a real person.",
+    "demoDevice": "Demo version. Your profile and posts stay on this device.",
+    "notSaving": "This browser is not saving data. Changes will be lost on reload.",
+    "caughtUp": "You are all caught up.",
+    "version": "gens v{{version}} · demo data is stored on this device only"
+  },
+  "nav": {
+    "main": "Main",
+    "home": "Home",
+    "myClass": "My Class",
+    "explore": "Explore",
+    "profile": "Profile"
+  },
+  "labels": {
+    "classOf": "Class of {{year}}",
+    "classShort": "’{{yy}}",
+    "generation": "Generation",
+    "class": "Class",
+    "born": "Born"
+  },
+  "generations": {
+    "millennials": { "name": "Millennials", "short": "Millennials", "tagline": "Dial-up to broadband." },
+    "gen-z": { "name": "Generation Z", "short": "Gen Z", "tagline": "Grew up with the internet in our pockets." },
+    "gen-alpha": { "name": "Generation Alpha", "short": "Gen Alpha", "tagline": "Just getting started." }
+  },
+  "time": {
+    "justNow": "Just now",
+    "minutes": "{{count}}m",
+    "hours": "{{count}}h",
+    "days": "{{count}}d"
+  },
+  "welcome": {
+    "headline": "A calm place for the people who grew up when you did.",
+    "lead": "Join your generation, find your class, and see how other years see the world.",
+    "language": "Language",
+    "nameLabel": "Display name",
+    "namePlaceholder": "How should others see you?",
+    "yearLabel": "Birth year",
+    "yearPlaceholder": "Select your year",
+    "yearOption": "{{year}}",
+    "yearHelp": "gens is open to {{generation}} ({{start}}–{{end}}) for now. Your class can't be changed later.",
+    "pickYear": "Pick your birth year to see where you belong.",
+    "start": "Get started"
+  },
+  "home": {
+    "subtitle": "{{start}}–{{end}} · {{tagline}}",
+    "feedLabel": "Generation feed",
+    "emptyTitle": "Quiet for now",
+    "emptyBody": "Be the first to say hello to your generation.",
+    "emptyAction": "Write a post"
+  },
+  "myClass": {
+    "eyebrow": "Your class · {{generation}}",
+    "subtitle_one": "Everyone born in {{year}}. {{count}} voice here so far.",
+    "subtitle_other": "Everyone born in {{year}}. {{count}} voices here so far.",
+    "feedLabel": "Class feed",
+    "emptyTitle": "Your class is just getting started",
+    "emptyBody": "Say hi to the rest of the {{className}}.",
+    "emptyAction": "Write to your class",
+    "compose": "New post in {{className}}"
+  },
+  "explore": {
+    "title": "Explore classes",
+    "subtitle": "Read how other years see things. You can post only in your own class.",
+    "noPosts": "No posts yet",
+    "posts_one": "{{count}} post",
+    "posts_other": "{{count}} posts",
+    "yourClass": "Your class",
+    "moreSoon": "Other generations will open in a future version."
+  },
+  "classView": {
+    "visiting": "Visiting",
+    "backToExplore": "Back to Explore",
+    "readOnlyTitle": "Read only.",
+    "readOnlyBody": "Posting and reactions are for the {{className}}.",
+    "emptyTitle": "Nothing here yet",
+    "emptyBody": "The {{className}} hasn't posted anything so far.",
+    "notFoundTitle": "Class not found",
+    "notFoundBody": "That class isn't part of your generation."
+  },
+  "composer": {
+    "title": "New post",
+    "reviewTitle": "Review",
+    "newPost": "New post",
+    "review": "Review",
+    "post": "Post",
+    "edit": "Edit",
+    "postTo": "Post to",
+    "classHint": "Only your class can post here. Everyone in {{generation}} can read it.",
+    "generationHint": "Shared with all of {{generation}}.",
+    "bodyLabel": "Post",
+    "placeholder": "What's on your mind?",
+    "postingAs": "Posting to <strong>{{destination}}</strong> as <strong>{{name}}</strong>",
+    "deviceNote": "Demo: posts are saved on this device only.",
+    "posted": "Posted to {{destination}}"
+  },
+  "post": {
+    "reactions": "Reactions",
+    "readOnly": "{{label}} · read only",
+    "withCount": "{{label}}, {{count}}",
+    "scopeGeneration": "Generation",
+    "scopeClass": "Class"
+  },
+  "reactions": {
+    "same": "Same",
+    "warm": "Warm",
+    "thoughtful": "Thoughtful"
+  },
+  "profile": {
+    "title": "Profile",
+    "noBio": "No bio yet.",
+    "edit": "Edit profile",
+    "settings": "Settings",
+    "yourPosts": "Your posts",
+    "emptyTitle": "No posts yet",
+    "emptyBody": "What you share in your class or generation will show up here.",
+    "editTitle": "Edit profile",
+    "bioLabel": "Bio",
+    "bioPlaceholder": "A line or two about you",
+    "lockedNote": "Birth year, generation and class ({{className}}) are set at sign-up and can't be changed here.",
+    "updated": "Profile updated"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "languageHelp": "Changes the app's menus and messages. Posts and bios are shown as written.",
+    "languageChanged": "Language changed",
+    "developer": "Developer",
+    "resetHelp": "Clears your profile and posts on this device and restores the sample posts, so you can redo onboarding.",
+    "reset": "Reset demo",
+    "resetConfirmTitle": "Reset the demo?",
+    "resetConfirmBody": "Your profile and every post you wrote on this device will be deleted. This can't be undone.",
+    "resetConfirm": "Reset"
+  },
+  "errors": {
+    "noProfile": "Set up your profile first.",
+    "emptyPost": "Write something before posting.",
+    "postTooLong": "Posts can be up to {{max}} characters.",
+    "notYourClass": "You can only post in your own class.",
+    "notYourGeneration": "You can only post in your own generation.",
+    "readOnly": "This feed is read-only for you.",
+    "nameRequired": "Please enter a display name.",
+    "nameTooLong": "Display names can be up to {{max}} characters.",
+    "bioTooLong": "Bios can be up to {{max}} characters.",
+    "generationClosed": "gens is open to Gen Z for now.",
+    "generic": "Something went wrong. Please try again."
+  }
+}

@@ -14,7 +14,8 @@
   --color-line: #E7E1D6;
   --color-clay: #B9785F;
 
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  /* Latin glyphs come from Inter/Fraunces; CJK falls through to the system fonts. */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Apple SD Gothic Neo", "Noto Sans JP", "Noto Sans KR", "Yu Gothic UI", "Malgun Gothic", Arial, sans-serif;
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
 
   --radius-card: 1.25rem;
@@ -34,7 +35,39 @@
   /* iOS zooms into inputs under 16px */
   input, textarea, select { font-size: 16px; }
   button { cursor: pointer; }
+  h1, h2 { text-wrap: balance; }
+  p { text-wrap: pretty; }
   :focus-visible { outline: 2px solid var(--color-ocean); outline-offset: 2px; border-radius: 6px; }
+}
+
+/* ---------- Japanese & Korean typography ---------- */
+@layer base {
+  :lang(ja) body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "Meiryo", sans-serif;
+    line-break: strict;
+  }
+  :lang(ko) body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+    word-break: keep-all; /* break between words, not inside them */
+    overflow-wrap: anywhere;
+  }
+  /* Serif Latin headings + clean CJK sans: Fraunces has no CJK glyphs, so they fall back. */
+  :lang(ja) .font-display {
+    font-family: "Fraunces", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    font-weight: 600;
+  }
+  :lang(ko) .font-display {
+    font-family: "Fraunces", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-weight: 600;
+  }
+  /* CJK text needs more line height and no tight/wide tracking */
+  :lang(ja) .leading-relaxed, :lang(ko) .leading-relaxed { line-height: 1.8; }
+  :lang(ja) p, :lang(ko) p { line-height: 1.7; }
+  :lang(ja) .tracking-tight, :lang(ko) .tracking-tight { letter-spacing: 0; }
+  :lang(ja) .tracking-wider, :lang(ko) .tracking-wider { letter-spacing: 0.02em; }
+  :lang(ja) h1.font-display, :lang(ko) h1.font-display { line-height: 1.35; }
+  /* User content keeps the default rules of whatever language it was written in */
+  .post-body { word-break: normal; }
 }
 
 @utility pt-safe { padding-top: env(safe-area-inset-top); }

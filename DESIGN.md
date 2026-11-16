@@ -25,6 +25,9 @@ Tailwind のテーマトークンとして `src/index.css` の `@theme` に定�
 - 本文: Inter（フォールバック: -apple-system / SF Pro）。15–16px、行間ゆったり
 - 見出し: Fraunces（温かみのあるセリフ）。ページタイトル、ロゴ、シート見出しのみ
 - 入力欄は 16px 以上（iOS Safari の自動ズーム防止）
+- 日本語: Latin は Inter / Fraunces、和文はヒラギノ角ゴ（iOS）→ Noto Sans JP。本文行間 1.7–1.8、`line-break: strict`
+- 韓国語: 和文と同様に Apple SD Gothic Neo → Noto Sans KR。`word-break: keep-all` で単語の途中で改行しない
+- 日本語・韓国語の見出しは Fraunces（数字・欧文）＋ゴシック体 600。字間の詰め・広げは行わない
 
 ## 手描き要素
 

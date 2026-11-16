@@ -1,0 +1,155 @@
+{
+  "common": {
+    "appName": "gens",
+    "cancel": "キャンセル",
+    "close": "閉じる",
+    "save": "保存",
+    "back": "戻る",
+    "you": "あなた",
+    "sample": "サンプル",
+    "sampleHint": "デモ用のサンプル投稿です。実在の人物ではありません。",
+    "demoDevice": "デモ版です。プロフィールと投稿はこの端末にのみ保存されます。",
+    "notSaving": "このブラウザではデータを保存できません。再読み込みすると変更が失われます。",
+    "caughtUp": "すべて読みました。",
+    "version": "gens v{{version}} · デモデータはこの端末にのみ保存されます"
+  },
+  "nav": {
+    "main": "メイン",
+    "home": "ホーム",
+    "myClass": "マイクラス",
+    "explore": "探す",
+    "profile": "プロフィール"
+  },
+  "labels": {
+    "classOf": "{{year}}年生まれ",
+    "classShort": "’{{yy}}",
+    "generation": "世代",
+    "class": "クラス",
+    "born": "生まれ年"
+  },
+  "generations": {
+    "millennials": { "name": "ミレニアル世代", "short": "ミレニアル", "tagline": "ダイヤルアップからブロードバンドへ。" },
+    "gen-z": { "name": "Z世代", "short": "Z世代", "tagline": "ポケットにインターネットがある時代に育った世代。" },
+    "gen-alpha": { "name": "α世代", "short": "α世代", "tagline": "まだ始まったばかり。" }
+  },
+  "time": {
+    "justNow": "たった今",
+    "minutes": "{{count}}分前",
+    "hours": "{{count}}時間前",
+    "days": "{{count}}日前"
+  },
+  "welcome": {
+    "headline": "同じ時代に育った人たちと、穏やかにつながる場所。",
+    "lead": "自分の世代に参加して、同い年のクラスを見つけ、ほかの年の人たちの見方にも触れてみましょう。",
+    "language": "言語",
+    "nameLabel": "表示名",
+    "namePlaceholder": "ほかの人に表示される名前",
+    "yearLabel": "生まれ年",
+    "yearPlaceholder": "生まれ年を選択",
+    "yearOption": "{{year}}年",
+    "yearHelp": "現在 gens は{{generation}}（{{start}}〜{{end}}年生まれ）向けに公開しています。登録後にクラスは変更できません。",
+    "pickYear": "生まれ年を選ぶと、所属する世代とクラスが表示されます。",
+    "start": "はじめる"
+  },
+  "home": {
+    "subtitle": "{{start}}〜{{end}}年生まれ · {{tagline}}",
+    "feedLabel": "世代フィード",
+    "emptyTitle": "まだ静かです",
+    "emptyBody": "最初のひとことを、同じ世代に届けてみましょう。",
+    "emptyAction": "投稿する"
+  },
+  "myClass": {
+    "eyebrow": "あなたのクラス · {{generation}}",
+    "subtitle_other": "{{year}}年に生まれたみんなの場所。これまでに{{count}}人が投稿しています。",
+    "feedLabel": "クラスフィード",
+    "emptyTitle": "あなたのクラスはこれからです",
+    "emptyBody": "{{className}}のみんなにあいさつしてみましょう。",
+    "emptyAction": "クラスに投稿する",
+    "compose": "{{className}}に投稿"
+  },
+  "explore": {
+    "title": "クラスを探す",
+    "subtitle": "ほかの年の人たちの声を読んでみましょう。投稿できるのは自分のクラスだけです。",
+    "noPosts": "まだ投稿はありません",
+    "posts_other": "{{count}}件の投稿",
+    "yourClass": "あなたのクラス",
+    "moreSoon": "ほかの世代は今後のバージョンで公開予定です。"
+  },
+  "classView": {
+    "visiting": "見学中",
+    "backToExplore": "クラス一覧に戻る",
+    "readOnlyTitle": "閲覧のみ。",
+    "readOnlyBody": "投稿とリアクションは{{className}}の人だけができます。",
+    "emptyTitle": "まだ何もありません",
+    "emptyBody": "{{className}}の投稿はまだありません。",
+    "notFoundTitle": "クラスが見つかりません",
+    "notFoundBody": "このクラスはあなたの世代に含まれていません。"
+  },
+  "composer": {
+    "title": "新しい投稿",
+    "reviewTitle": "確認",
+    "newPost": "新しい投稿",
+    "review": "確認",
+    "post": "投稿",
+    "edit": "編集",
+    "postTo": "投稿先",
+    "classHint": "投稿できるのは同じクラスの人だけです。{{generation}}の全員が読めます。",
+    "generationHint": "{{generation}}の全員に公開されます。",
+    "bodyLabel": "投稿",
+    "placeholder": "いま考えていることは？",
+    "postingAs": "<strong>{{name}}</strong>として<strong>{{destination}}</strong>に投稿します",
+    "deviceNote": "デモ：投稿はこの端末にのみ保存されます。",
+    "posted": "{{destination}}に投稿しました"
+  },
+  "post": {
+    "reactions": "リアクション",
+    "readOnly": "{{label}} · 閲覧のみ",
+    "withCount": "{{label}}、{{count}}",
+    "scopeGeneration": "世代",
+    "scopeClass": "クラス"
+  },
+  "reactions": {
+    "same": "わかる",
+    "warm": "あたたかい",
+    "thoughtful": "考えさせられる"
+  },
+  "profile": {
+    "title": "プロフィール",
+    "noBio": "自己紹介はまだありません。",
+    "edit": "プロフィールを編集",
+    "settings": "設定",
+    "yourPosts": "あなたの投稿",
+    "emptyTitle": "まだ投稿はありません",
+    "emptyBody": "クラスや世代に投稿した内容がここに表示されます。",
+    "editTitle": "プロフィールを編集",
+    "bioLabel": "自己紹介",
+    "bioPlaceholder": "あなたについてひとことふたこと",
+    "lockedNote": "生まれ年・世代・クラス（{{className}}）は登録時に決まり、ここでは変更できません。",
+    "updated": "プロフィールを更新しました"
+  },
+  "settings": {
+    "title": "設定",
+    "language": "言語",
+    "languageHelp": "メニューやメッセージの言語を変更します。投稿と自己紹介は書かれたまま表示されます。",
+    "languageChanged": "言語を変更しました",
+    "developer": "開発者向け",
+    "resetHelp": "この端末のプロフィールと投稿を消去してサンプル投稿を元に戻し、初期設定をやり直せるようにします。",
+    "reset": "デモをリセット",
+    "resetConfirmTitle": "デモをリセットしますか？",
+    "resetConfirmBody": "この端末に保存されたプロフィールと、あなたの投稿はすべて削除されます。元に戻すことはできません。",
+    "resetConfirm": "リセット"
+  },
+  "errors": {
+    "noProfile": "先にプロフィールを設定してください。",
+    "emptyPost": "投稿する内容を入力してください。",
+    "postTooLong": "投稿は{{max}}文字までです。",
+    "notYourClass": "投稿できるのは自分のクラスだけです。",
+    "notYourGeneration": "投稿できるのは自分の世代だけです。",
+    "readOnly": "このフィードは閲覧のみです。",
+    "nameRequired": "表示名を入力してください。",
+    "nameTooLong": "表示名は{{max}}文字までです。",
+    "bioTooLong": "自己紹介は{{max}}文字までです。",
+    "generationClosed": "現在 gens はZ世代のみ登録できます。",
+    "generic": "問題が発生しました。もう一度お試しください。"
+  }
+}

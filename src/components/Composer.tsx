@@ -1,7 +1,8 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
-import { className as classLabel, getGeneration } from '../config/generations'
-import { MAX_POST_LENGTH, RuleError } from '../lib/rules'
+import { Trans, useTranslation } from 'react-i18next'
+import { useFormat } from '../i18n/useFormat'
+import { MAX_POST_LENGTH } from '../lib/rules'
 import { useStore } from '../state/store'
 import type { PostScope } from '../types'
 import { Avatar } from './Avatar'
@@ -19,6 +20,7 @@ export function useComposer() {
 }
 
 export function ComposerProvider({ children }: { children: ReactNode }) {
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const [initial, setInitial] = useState<Destination>('generation')
   const openComposer = useCallback((dest: Destination = 'generation') => {
@@ -29,7 +31,7 @@ export function ComposerProvider({ children }: { children: ReactNode }) {
   return (
     <ComposerContext.Provider value={openComposer}>
       {children}
-      <Sheet open={open} onClose={close} label="New post">
+      <Sheet open={open} onClose={close} label={t('composer.title')}>
         {open && <ComposerBody initial={initial} onDone={close} />}
       </Sheet>
     </ComposerContext.Provider>
@@ -38,6 +40,7 @@ export function ComposerProvider({ children }: { children: ReactNode }) {
 
 function ComposerBody({ initial, onDone }: { initial: Destination; onDone: () => void }) {
   const { profile, createPost } = useStore()
+  const { t, className, generationShort, errorMessage } = useFormat()
   const toast = useToast()
   const [dest, setDest] = useState<Destination>(initial)
   const [body, setBody] = useState('')
@@ -50,8 +53,8 @@ function ComposerBody({ initial, onDone }: { initial: Destination; onDone: () =>
   }, [step])
 
   if (!profile) return null
-  const generation = getGeneration(profile.generationId)
-  const destLabel = dest === 'class' ? classLabel(profile.birthYear) : (generation?.shortName ?? 'Generation')
+  const generation = generationShort(profile.generationId)
+  const destLabel = dest === 'class' ? className(profile.birthYear) : generation
   const scope: PostScope =
     dest === 'class'
       ? { kind: 'class', generationId: profile.generationId, classYear: profile.birthYear }
@@ -62,10 +65,10 @@ function ComposerBody({ initial, onDone }: { initial: Destination; onDone: () =>
   const submit = () => {
     try {
       createPost(scope, body)
-      toast(`Posted to ${destLabel}`)
+      toast(t('composer.posted', { destination: destLabel }))
       onDone()
     } catch (e) {
-      setError(e instanceof RuleError ? e.message : 'Something went wrong. Please try again.')
+      setError(errorMessage(e))
       setStep('write')
     }
   }
@@ -75,14 +78,14 @@ function ComposerBody({ initial, onDone }: { initial: Destination; onDone: () =>
       <div className="flex shrink-0 items-center justify-between px-3 pt-1">
         {step === 'review' ? (
           <button type="button" onClick={() => setStep('write')} className="flex h-11 items-center gap-1 rounded-full px-2 text-[15px] text-muted">
-            <ChevronLeftIcon size={20} /> Edit
+            <ChevronLeftIcon size={20} /> {t('composer.edit')}
           </button>
         ) : (
-          <button type="button" onClick={onDone} aria-label="Cancel" className="flex h-11 w-11 items-center justify-center rounded-full text-muted active:bg-sand/60">
+          <button type="button" onClick={onDone} aria-label={t('common.cancel')} className="flex h-11 w-11 items-center justify-center rounded-full text-muted active:bg-sand/60">
             <CloseIcon />
           </button>
         )}
-        <h2 className="font-display text-[17px]">{step === 'write' ? 'New post' : 'Review'}</h2>
+        <h2 className="font-display text-[17px]">{step === 'write' ? t('composer.title') : t('composer.reviewTitle')}</h2>
         {step === 'write' ? (
           <button
             type="button"
@@ -90,11 +93,11 @@ function ComposerBody({ initial, onDone }: { initial: Destination; onDone: () =>
             onClick={() => setStep('review')}
             className="h-9 rounded-full bg-ink px-4 text-[14px] font-medium text-paper disabled:bg-ink/20"
           >
-            Review
+            {t('composer.review')}
           </button>
         ) : (
           <button type="button" onClick={submit} className="h-9 rounded-full bg-ink px-4 text-[14px] font-medium text-paper">
-            Post
+            {t('composer.post')}
           </button>
         )}
       </div>
@@ -102,7 +105,7 @@ function ComposerBody({ initial, onDone }: { initial: Destination; onDone: () =>
       {step === 'write' ? (
         <div className="flex min-h-0 flex-col overflow-y-auto px-5 pb-4">
           <fieldset className="mt-2">
-            <legend className="mb-2 text-[13px] text-muted">Post to</legend>
+            <legend className="mb-2 text-[13px] text-muted">{t('composer.postTo')}</legend>
             <div className="grid grid-cols-2 gap-1 rounded-full bg-sand/70 p-1">
               {(['class', 'generation'] as const).map((d) => (
                 <button
@@ -110,22 +113,22 @@ function ComposerBody({ initial, onDone }: { initial: Destination; onDone: () =>
                   type="button"
                   aria-pressed={dest === d}
                   onClick={() => setDest(d)}
-                  className={`h-10 rounded-full text-[14px] font-medium transition-colors ${
+                  className={`h-10 truncate rounded-full px-2 text-[14px] font-medium transition-colors ${
                     dest === d ? 'bg-surface text-ink shadow-[0_1px_2px_rgba(48,58,59,0.08)]' : 'text-muted'
                   }`}
                 >
-                  {d === 'class' ? classLabel(profile.birthYear) : (generation?.shortName ?? 'Generation')}
+                  {d === 'class' ? className(profile.birthYear) : generation}
                 </button>
               ))}
             </div>
             <p className="mt-2 text-[13px] text-muted">
               {dest === 'class'
-                ? `Only your class can post here. Everyone in ${generation?.shortName ?? 'your generation'} can read it.`
-                : `Shared with all of ${generation?.shortName ?? 'your generation'}.`}
+                ? t('composer.classHint', { generation })
+                : t('composer.generationHint', { generation })}
             </p>
           </fieldset>
 
-          <label className="sr-only" htmlFor="post-body">Post</label>
+          <label className="sr-only" htmlFor="post-body">{t('composer.bodyLabel')}</label>
           <textarea
             id="post-body"
             ref={textRef}
@@ -135,7 +138,8 @@ function ComposerBody({ initial, onDone }: { initial: Destination; onDone: () =>
               setError(null)
             }}
             rows={5}
-            placeholder="What's on your mind?"
+            dir="auto"
+            placeholder={t('composer.placeholder')}
             className="mt-4 min-h-32 w-full resize-none rounded-2xl border border-line bg-surface p-4 leading-relaxed placeholder:text-muted/70 focus:border-ocean focus:outline-none"
           />
           <div className="mt-2 flex items-center justify-between text-[13px]">
@@ -148,26 +152,29 @@ function ComposerBody({ initial, onDone }: { initial: Destination; onDone: () =>
       ) : (
         <div className="min-h-0 overflow-y-auto px-5 pb-4">
           <p className="mt-2 text-[13px] text-muted">
-            Posting to <span className="font-medium text-ink">{destLabel}</span> as{' '}
-            <span className="font-medium text-ink">{profile.displayName}</span>
+            <Trans
+              i18nKey="composer.postingAs"
+              values={{ destination: destLabel, name: profile.displayName }}
+              components={{ strong: <span className="font-medium text-ink" /> }}
+            />
           </p>
           <div className="mt-3 rounded-card border border-line bg-surface p-4">
             <div className="flex items-center gap-3">
               <Avatar name={profile.displayName} seed={profile.id} size={34} />
               <div>
                 <div className="text-[15px] font-semibold">{profile.displayName}</div>
-                <div className="text-[13px] text-muted">{classLabel(profile.birthYear)}</div>
+                <div className="text-[13px] text-muted">{className(profile.birthYear)}</div>
               </div>
             </div>
-            <p className="mt-3 max-h-[40dvh] overflow-y-auto whitespace-pre-wrap break-words text-[15.5px] leading-relaxed">
+            <p dir="auto" className="post-body mt-3 max-h-[40dvh] overflow-y-auto whitespace-pre-wrap break-words text-[15.5px] leading-relaxed">
               {body.trim()}
             </p>
           </div>
           <p className="mt-3 text-[12px] text-muted">
-            Demo: posts are saved on this device only.
+            {t('composer.deviceNote')}
           </p>
           <Button className="mt-4 w-full" onClick={submit}>
-            Post
+            {t('composer.post')}
           </Button>
         </div>
       )}

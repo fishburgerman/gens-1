@@ -6,10 +6,27 @@ export const MAX_POST_LENGTH = 500
 export const MAX_NAME_LENGTH = 32
 export const MAX_BIO_LENGTH = 160
 
+/** Error codes map to `errors.<code>` in src/locales/*.json. */
+export type RuleErrorCode =
+  | 'noProfile'
+  | 'emptyPost'
+  | 'postTooLong'
+  | 'notYourClass'
+  | 'notYourGeneration'
+  | 'readOnly'
+  | 'nameRequired'
+  | 'nameTooLong'
+  | 'bioTooLong'
+  | 'generationClosed'
+
 export class RuleError extends Error {
-  constructor(message: string) {
-    super(message)
+  readonly code: RuleErrorCode
+  readonly params: Record<string, number | string>
+  constructor(code: RuleErrorCode, params: Record<string, number | string> = {}) {
+    super(code)
     this.name = 'RuleError'
+    this.code = code
+    this.params = params
   }
 }
 
@@ -31,9 +48,9 @@ export function canReactTo(profile: Profile | null, post: Post): boolean {
 
 export function validateBody(body: string): string {
   const trimmed = body.trim()
-  if (trimmed.length === 0) throw new RuleError('Write something before posting.')
+  if (trimmed.length === 0) throw new RuleError('emptyPost')
   if (trimmed.length > MAX_POST_LENGTH)
-    throw new RuleError(`Posts can be up to ${MAX_POST_LENGTH} characters.`)
+    throw new RuleError('postTooLong', { max: MAX_POST_LENGTH })
   return trimmed
 }
 
@@ -43,13 +60,9 @@ export function buildPost(
   body: string,
   now: Date = new Date(),
 ): Post {
-  if (!profile) throw new RuleError('Set up your profile first.')
+  if (!profile) throw new RuleError('noProfile')
   if (!canWriteTo(profile, scope)) {
-    throw new RuleError(
-      scope.kind === 'class'
-        ? 'You can only post in your own class.'
-        : 'You can only post in your own generation.',
-    )
+    throw new RuleError(scope.kind === 'class' ? 'notYourClass' : 'notYourGeneration')
   }
   return {
     id: createId('post'),
@@ -65,8 +78,8 @@ export function buildPost(
 }
 
 export function toggleReaction(post: Post, profile: Profile | null, type: ReactionType): Post {
-  if (!profile) throw new RuleError('Set up your profile first.')
-  if (!canReactTo(profile, post)) throw new RuleError('This feed is read-only for you.')
+  if (!profile) throw new RuleError('noProfile')
+  if (!canReactTo(profile, post)) throw new RuleError('readOnly')
   const current = post.reactions[type]
   const next = current.includes(profile.id)
     ? current.filter((id) => id !== profile.id)
@@ -76,23 +89,23 @@ export function toggleReaction(post: Post, profile: Profile | null, type: Reacti
 
 export function validateDisplayName(name: string): string {
   const trimmed = name.trim().replace(/\s+/g, ' ')
-  if (trimmed.length === 0) throw new RuleError('Please enter a display name.')
+  if (trimmed.length === 0) throw new RuleError('nameRequired')
   if (trimmed.length > MAX_NAME_LENGTH)
-    throw new RuleError(`Display names can be up to ${MAX_NAME_LENGTH} characters.`)
+    throw new RuleError('nameTooLong', { max: MAX_NAME_LENGTH })
   return trimmed
 }
 
 export function validateBio(bio: string): string {
   const trimmed = bio.trim()
   if (trimmed.length > MAX_BIO_LENGTH)
-    throw new RuleError(`Bios can be up to ${MAX_BIO_LENGTH} characters.`)
+    throw new RuleError('bioTooLong', { max: MAX_BIO_LENGTH })
   return trimmed
 }
 
 export function buildProfile(displayName: string, birthYear: number, now: Date = new Date()): Profile {
   const generation = getGenerationForYear(birthYear)
   if (!generation || !generation.enabled) {
-    throw new RuleError('gens is open to Gen Z for now.')
+    throw new RuleError('generationClosed')
   }
   return {
     id: createId('user'),
