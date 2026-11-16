@@ -44,7 +44,7 @@ describe('posting rules', () => {
   })
   it('blocks posting to another class', () => {
     expect(canWriteTo(me, otherClass)).toBe(false)
-    expect(() => buildPost(me, otherClass, 'hello')).toThrow(/own class/)
+    expect(() => buildPost(me, otherClass, 'hello')).toThrow('notYourClass')
   })
   it('blocks posting to another generation', () => {
     expect(() => buildPost(me, { kind: 'generation', generationId: 'millennials' }, 'hi')).toThrow(RuleError)

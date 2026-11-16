@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { Post } from '../types'
 import { PostCard } from './PostCard'
 import { Shoreline } from './Sketch'
@@ -12,6 +13,7 @@ export function Feed({
   empty: { title: string; body: string; action?: ReactNode }
   showScope?: boolean
 }) {
+  const { t } = useTranslation()
   if (posts.length === 0) {
     return (
       <div className="flex flex-col items-center px-8 py-16 text-center">
@@ -29,7 +31,7 @@ export function Feed({
       ))}
       <div className="flex flex-col items-center py-8 text-[13px] text-muted">
         <Shoreline className="mb-3 w-16 text-sand-deep" />
-        You are all caught up.
+        {t('common.caughtUp')}
       </div>
     </div>
   )

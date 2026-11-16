@@ -7,6 +7,7 @@ import { Explore } from './pages/Explore'
 import { Home } from './pages/Home'
 import { MyClass } from './pages/MyClass'
 import { Profile } from './pages/Profile'
+import { Settings } from './pages/Settings'
 import { Welcome } from './pages/Welcome'
 import { StoreProvider, useStore } from './state/store'
 
@@ -22,6 +23,7 @@ function Gate() {
           <Route path="explore" element={<Explore />} />
           <Route path="explore/:year" element={<ClassView />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="settings" element={<Settings />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

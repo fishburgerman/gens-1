@@ -2,15 +2,15 @@
  * Generation definitions are configuration data, not code.
  * Boundaries differ between sources, so they are kept in one place
  * and can be changed without touching the UI.
+ * Display names and taglines live in src/locales/*.json under `generations.<id>`.
  */
+export type GenerationId = 'millennials' | 'gen-z' | 'gen-alpha'
+
 export interface GenerationConfig {
-  id: string
-  name: string
-  shortName: string
+  id: GenerationId
   /** Inclusive birth year range */
   startYear: number
   endYear: number
-  tagline: string
   /** Only enabled generations can be joined during onboarding. */
   enabled: boolean
 }
@@ -18,29 +18,20 @@ export interface GenerationConfig {
 export const GENERATIONS: readonly GenerationConfig[] = [
   {
     id: 'millennials',
-    name: 'Millennials',
-    shortName: 'Millennials',
     startYear: 1981,
     endYear: 1996,
-    tagline: 'Dial-up to broadband.',
     enabled: false,
   },
   {
     id: 'gen-z',
-    name: 'Generation Z',
-    shortName: 'Gen Z',
     startYear: 1997,
     endYear: 2012,
-    tagline: 'Grew up with the internet in our pockets.',
     enabled: true,
   },
   {
     id: 'gen-alpha',
-    name: 'Generation Alpha',
-    shortName: 'Gen Alpha',
     startYear: 2013,
     endYear: 2024,
-    tagline: 'Just getting started.',
     enabled: false,
   },
 ]
@@ -73,8 +64,4 @@ export function classYears(generationId: string): number[] {
   const years: number[] = []
   for (let y = g.endYear; y >= g.startYear; y--) years.push(y)
   return years
-}
-
-export function className(year: number): string {
-  return `Class of ${year}`
 }
