@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #FAF8F4;
+  --color-surface: #FFFFFF;
+  --color-sand: #EDE5D8;
+  --color-sand-deep: #DCD1BF;
+  --color-sage: #A8B8A0;
+  --color-sage-deep: #6F8467;
+  --color-ocean: #86AFC0;
+  --color-ocean-deep: #4F7F93;
+  --color-ink: #303A3B;
+  --color-muted: #7B8582;
+  --color-line: #E7E1D6;
+  --color-clay: #B9785F;
+
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+
+  --radius-card: 1.25rem;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    background: var(--color-paper);
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    min-height: 100dvh;
+    overscroll-behavior-y: none;
+  }
+  /* iOS zooms into inputs under 16px */
+  input, textarea, select { font-size: 16px; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--color-ocean); outline-offset: 2px; border-radius: 6px; }
+}
+
+@utility pt-safe { padding-top: env(safe-area-inset-top); }
+@utility pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+@utility h-nav { height: calc(60px + env(safe-area-inset-bottom)); }
+
+@keyframes sheet-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rise-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+@utility animate-sheet { animation: sheet-up 320ms cubic-bezier(0.32, 0.72, 0, 1); }
+@utility animate-fade { animation: fade-in 200ms ease-out; }
+@utility animate-rise { animation: rise-in 260ms ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+}
