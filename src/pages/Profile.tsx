@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 import { Avatar } from '../components/Avatar'
 import { Button } from '../components/Button'
 import { Feed } from '../components/Feed'
-import { CloseIcon, LockIcon, SlidersIcon } from '../components/Icons'
+import { CloseIcon, LockIcon, PinIcon, SlidersIcon } from '../components/Icons'
 import { PageHeader } from '../components/Layout'
+import { RegionSelect } from '../components/RegionSelect'
 import { Sheet } from '../components/Sheet'
 import { Shoreline } from '../components/Sketch'
 import { useToast } from '../components/Toast'
@@ -15,7 +16,7 @@ import { useProfile, useStore } from '../state/store'
 export function Profile() {
   const profile = useProfile()
   const { posts } = useStore()
-  const { t, className, classShort, generationShort } = useFormat()
+  const { t, className, classShort, generationShort, regionName } = useFormat()
   const [editing, setEditing] = useState(false)
   const mine = posts
     .filter((p) => p.authorId === profile.id)
@@ -42,6 +43,10 @@ export function Profile() {
             <div className="min-w-0 flex-1">
               <h2 dir="auto" className="truncate font-display text-[22px]">{profile.displayName}</h2>
               <p className="text-[14px] text-muted">{className(profile.birthYear)}</p>
+              <p className="mt-0.5 flex items-center gap-1 text-[13px] text-muted">
+                <PinIcon size={15} className="shrink-0" />
+                <span className="truncate">{profile.region ? regionName(profile.region) : t('profile.noRegion')}</span>
+              </p>
             </div>
           </div>
           {/* User content: never translated */}
@@ -88,12 +93,13 @@ function EditProfile({ onDone }: { onDone: () => void }) {
   const toast = useToast()
   const [name, setName] = useState(profile.displayName)
   const [bio, setBio] = useState(profile.bio)
+  const [region, setRegion] = useState<string | null>(profile.region)
   const [error, setError] = useState<unknown>(null)
 
   const save = (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      editProfile({ displayName: name, bio })
+      editProfile({ displayName: name, bio, region })
       toast(t('profile.updated'))
       onDone()
     } catch (err) {
@@ -131,6 +137,10 @@ function EditProfile({ onDone }: { onDone: () => void }) {
         className="w-full resize-none rounded-2xl border border-line bg-surface p-4 leading-relaxed placeholder:text-muted/70 focus:border-ocean focus:outline-none"
       />
       <div className="mt-1 text-right text-[12px] tabular-nums text-muted">{bio.length}/{MAX_BIO_LENGTH}</div>
+
+      <label htmlFor="edit-region" className="mb-2 mt-2 block text-[14px] font-medium">{t('welcome.regionLabel')}</label>
+      <RegionSelect id="edit-region" value={region} onChange={(v) => { setRegion(v); setError(null) }} />
+      <p className="mt-2 text-[12.5px] text-muted">{t('welcome.regionHelp')}</p>
 
       <div className="mt-3 flex items-start gap-3 rounded-2xl bg-sand/60 p-3 text-[13px] text-muted">
         <LockIcon size={18} className="mt-0.5 shrink-0" />

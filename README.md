@@ -1,6 +1,8 @@
 # gens
 
-世代別SNS「gens」のプロトタイプ（v0.2）。同じ世代・同じ出生年（Class）の人たちが落ち着いてつながるための、モバイルファーストな Web アプリです。
+**gens — You’re not alone.** 同じ年に生まれた仲間が、世界中にいる。
+
+世界中の同じ出生年（Class）の人々が、互いの存在を感じられる SNS のプロトタイプ（v0.3）です。基本思想は **Belonging First, Discovery Second**：最初に見えるのは必ず自分の Class、ほかの年や国の日常は Explore で発見します。
 
 - 公開URL（GitHub Pages）: https://fishburgerman.github.io/gens-1/
 - UI言語: 日本語 / 한국어 / English（ブラウザの言語設定から自動判定、設定画面で切り替え可能）
@@ -10,12 +12,12 @@
 
 | 画面 | 内容 |
 | --- | --- |
-| Welcome | 言語選択、表示名・出生年を入力し、Generation / Class を確認して開始 |
-| Home | Generation（Gen Z）共通フィード、投稿、リアクション |
-| My Class | 自分の出生年の Class フィード、投稿、リアクション |
-| Explore | Gen Z の各 Class 一覧と、他 Class の閲覧専用フィード |
-| Create Post | 投稿先（自分の Class / Generation）の選択 → 確認 → 投稿 |
-| Profile | 表示名・出生年・Generation・Class・自己紹介・自分の投稿・編集 |
+| Welcome | 言語、表示名、出生年、国・地域（任意）を入力して開始 |
+| Home（My Class） | 自分の Class。同い年が世界中にいることを感じるヘッダー、今週のお題、Class フィード、Explore への導線 |
+| Generation | 世代（Gen Z）共通フィード。補助的な交流の場 |
+| Explore | 出生年検索、世代別 Class 一覧（他世代を含む）、世界の日常フィード（国・地域で絞り込み）。すべて閲覧専用 |
+| Create Post | 投稿先（自分の Class / Generation）、書き出しのヒント、確認 → 投稿。今週のお題への回答 |
+| Profile | 表示名・出生年・Generation・Class・国・地域・自己紹介・自分の投稿・編集 |
 | Settings | 言語の切り替え（即時反映・端末に保存）、デモリセット |
 
 ## 開発

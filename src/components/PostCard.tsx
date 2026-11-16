@@ -4,7 +4,7 @@ import { useStore } from '../state/store'
 import type { Post, ReactionType } from '../types'
 import { REACTION_TYPES } from '../types'
 import { Avatar } from './Avatar'
-import { SameIcon, ThoughtfulIcon, WarmIcon } from './Icons'
+import { BubbleIcon, SameIcon, ThoughtfulIcon, WarmIcon } from './Icons'
 
 const REACTION_META: Record<ReactionType, { Icon: typeof SameIcon; active: string }> = {
   same: { Icon: SameIcon, active: 'text-ocean-deep bg-ocean/15' },
@@ -14,7 +14,7 @@ const REACTION_META: Record<ReactionType, { Icon: typeof SameIcon; active: strin
 
 export function PostCard({ post, showScope = false }: { post: Post; showScope?: boolean }) {
   const { profile, react } = useStore()
-  const { t, className, relativeTime, fullTime } = useFormat()
+  const { t, className, relativeTime, fullTime, regionName, questionText } = useFormat()
   const interactive = canReactTo(profile, post)
   const isMine = profile?.id === post.authorId
 
@@ -35,10 +35,16 @@ export function PostCard({ post, showScope = false }: { post: Post; showScope?: 
               </span>
             )}
           </div>
-          <div className="flex items-center gap-1.5 text-[13px] text-muted">
-            <span>{className(post.authorClassYear)}</span>
+          <div className="flex min-w-0 items-center gap-1.5 whitespace-nowrap text-[13px] text-muted">
+            <span className="shrink-0">{className(post.authorClassYear)}</span>
+            {post.authorRegion && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span className="truncate">{regionName(post.authorRegion)}</span>
+              </>
+            )}
             <span aria-hidden="true">·</span>
-            <time dateTime={post.createdAt} title={fullTime(post.createdAt)}>
+            <time className="shrink-0" dateTime={post.createdAt} title={fullTime(post.createdAt)}>
               {relativeTime(post.createdAt)}
             </time>
             {showScope && (
@@ -51,6 +57,16 @@ export function PostCard({ post, showScope = false }: { post: Post; showScope?: 
         </div>
       </header>
 
+      {post.prompt && (
+        <p className="mt-3 flex items-start gap-1.5 text-[13px] text-sage-deep">
+          <BubbleIcon size={16} className="mt-0.5 shrink-0" />
+          <span>
+            <span className="font-medium">{t('weekly.postLabel')}</span>
+            <span aria-hidden="true"> · </span>
+            {questionText(post.prompt.questionId)}
+          </span>
+        </p>
+      )}
       {/* User content: shown as written, never translated. dir="auto" keeps mixed scripts tidy. */}
       <p dir="auto" className="post-body mt-3 whitespace-pre-wrap break-words text-[15.5px] leading-relaxed">{post.body}</p>
 

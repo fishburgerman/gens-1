@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../components/Button'
 import { LanguagePicker } from '../components/LanguagePicker'
+import { RegionSelect } from '../components/RegionSelect'
 import { CoastScene, Logo } from '../components/Sketch'
 import { enabledGenerations, getGenerationForYear, selectableBirthYears } from '../config/generations'
 import { useFormat } from '../i18n/useFormat'
@@ -16,6 +17,7 @@ export function Welcome() {
   const open = enabledGenerations()[0]
   const [name, setName] = useState('')
   const [year, setYear] = useState<number | null>(null)
+  const [region, setRegion] = useState<string | null>(null)
   const [error, setError] = useState<unknown>(null)
   const generation = year ? getGenerationForYear(year) : undefined
   const ready = name.trim().length > 0 && year !== null
@@ -24,7 +26,7 @@ export function Welcome() {
     e.preventDefault()
     if (!year) return
     try {
-      createProfile(name, year)
+      createProfile(name, year, region)
       navigate('/', { replace: true })
     } catch (err) {
       setError(err)
@@ -82,6 +84,12 @@ export function Welcome() {
               {t('welcome.yearHelp', { generation: generationShort(open.id), start: open.startYear, end: open.endYear })}
             </p>
           )}
+        </div>
+
+        <div>
+          <label htmlFor="region" className="mb-2 block text-[14px] font-medium">{t('welcome.regionLabel')}</label>
+          <RegionSelect id="region" value={region} onChange={setRegion} />
+          <p className="mt-2 text-[13px] text-muted">{t('welcome.regionHelp')}</p>
         </div>
 
         <div className="rounded-card border border-line bg-surface p-4" aria-live="polite">

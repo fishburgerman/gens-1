@@ -3,13 +3,13 @@ import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { useStore } from '../state/store'
-import { ClassIcon, CompassIcon, HomeIcon, PenIcon, PersonIcon } from './Icons'
+import { CompassIcon, HomeIcon, PenIcon, PersonIcon, WaveIcon } from './Icons'
 import type { Destination } from './Composer'
 import { useComposer } from './Composer'
 
 const TABS = [
   { to: '/', label: 'nav.home', Icon: HomeIcon, end: true },
-  { to: '/class', label: 'nav.myClass', Icon: ClassIcon, end: false },
+  { to: '/generation', label: 'nav.generation', Icon: WaveIcon, end: false },
   { to: '/explore', label: 'nav.explore', Icon: CompassIcon, end: false },
   { to: '/profile', label: 'nav.profile', Icon: PersonIcon, end: false },
 ] as const
@@ -105,7 +105,7 @@ export function ComposeButton({ destination, label }: { destination: Destination
   return (
     <button
       type="button"
-      onClick={() => openComposer(destination)}
+      onClick={() => openComposer({ destination })}
       aria-label={label}
       className="fixed right-[max(1.25rem,calc(50vw_-_16rem_+_1.25rem))] bottom-[calc(76px_+_env(safe-area-inset-bottom))] z-30 flex h-14 w-14 items-center justify-center rounded-full bg-ink text-paper shadow-[0_6px_18px_rgba(48,58,59,0.18)] transition-transform active:scale-95"
     >

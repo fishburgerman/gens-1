@@ -30,7 +30,7 @@ describe('profile', () => {
     expect(() => buildProfile('   ', 2003)).toThrow(RuleError)
   })
   it('edit cannot change birth year or class', () => {
-    const edited = updateProfile(me, { displayName: 'Alex B', bio: 'hi', birthYear: 1999 } as never)
+    const edited = updateProfile(me, { displayName: 'Alex B', bio: 'hi', region: null, birthYear: 1999 } as never)
     expect(edited.birthYear).toBe(2003)
     expect(edited.displayName).toBe('Alex B')
   })

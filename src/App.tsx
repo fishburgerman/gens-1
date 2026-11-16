@@ -4,8 +4,8 @@ import { AppLayout } from './components/Layout'
 import { ToastProvider } from './components/Toast'
 import { ClassView } from './pages/ClassView'
 import { Explore } from './pages/Explore'
+import { Generation } from './pages/Generation'
 import { Home } from './pages/Home'
-import { MyClass } from './pages/MyClass'
 import { Profile } from './pages/Profile'
 import { Settings } from './pages/Settings'
 import { Welcome } from './pages/Welcome'
@@ -19,7 +19,9 @@ function Gate() {
       <Routes>
         <Route element={<AppLayout />}>
           <Route index element={<Home />} />
-          <Route path="class" element={<MyClass />} />
+          <Route path="generation" element={<Generation />} />
+          {/* v0.1/v0.2 links: My Class is now Home */}
+          <Route path="class" element={<Navigate to="/" replace />} />
           <Route path="explore" element={<Explore />} />
           <Route path="explore/:year" element={<ClassView />} />
           <Route path="profile" element={<Profile />} />

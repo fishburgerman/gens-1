@@ -1,6 +1,5 @@
 {
   "common": {
-    "appName": "gens",
     "cancel": "Cancel",
     "close": "Close",
     "save": "Save",
@@ -16,9 +15,9 @@
   "nav": {
     "main": "Main",
     "home": "Home",
-    "myClass": "My Class",
     "explore": "Explore",
-    "profile": "Profile"
+    "profile": "Profile",
+    "generation": "Generation"
   },
   "labels": {
     "classOf": "Class of {{year}}",
@@ -28,9 +27,21 @@
     "born": "Born"
   },
   "generations": {
-    "millennials": { "name": "Millennials", "short": "Millennials", "tagline": "Dial-up to broadband." },
-    "gen-z": { "name": "Generation Z", "short": "Gen Z", "tagline": "Grew up with the internet in our pockets." },
-    "gen-alpha": { "name": "Generation Alpha", "short": "Gen Alpha", "tagline": "Just getting started." }
+    "millennials": {
+      "name": "Millennials",
+      "short": "Millennials",
+      "tagline": "Dial-up to broadband."
+    },
+    "gen-z": {
+      "name": "Generation Z",
+      "short": "Gen Z",
+      "tagline": "Grew up with the internet in our pockets."
+    },
+    "gen-alpha": {
+      "name": "Generation Alpha",
+      "short": "Gen Alpha",
+      "tagline": "Just getting started."
+    }
   },
   "time": {
     "justNow": "Just now",
@@ -39,53 +50,95 @@
     "days": "{{count}}d"
   },
   "welcome": {
-    "headline": "A calm place for the people who grew up when you did.",
-    "lead": "Join your generation, find your class, and see how other years see the world.",
-    "language": "Language",
+    "headline": "You’re not alone.",
+    "lead": "People born the same year as you are living their lives all over the world. Different lives, same year.",
     "nameLabel": "Display name",
     "namePlaceholder": "How should others see you?",
     "yearLabel": "Birth year",
     "yearPlaceholder": "Select your year",
     "yearOption": "{{year}}",
     "yearHelp": "gens is open to {{generation}} ({{start}}–{{end}}) for now. Your class can't be changed later.",
-    "pickYear": "Pick your birth year to see where you belong.",
-    "start": "Get started"
+    "pickYear": "Pick your birth year to find your class.",
+    "start": "Get started",
+    "regionLabel": "Country or region (optional)",
+    "regionNone": "Don’t show",
+    "regionHelp": "Only the country or region name appears on your posts. No precise location is collected."
   },
   "home": {
+    "eyebrow": "Your class · {{generation}}",
+    "tagline": "Different lives. Same year.",
+    "belonging": "Everyone born in {{year}}, wherever they are in the world, living their own day.",
+    "regionsLabel": "Posts here come from",
+    "feedLabel": "Class feed",
+    "emptyTitle": "Your class is quiet right now",
+    "emptyBody": "Somewhere, someone born in {{year}} may be reading this too. A small post is enough to say you’re here.",
+    "emptyAction": "Write something small",
+    "compose": "New post in {{className}}",
+    "discoverTitle": "Meet other years",
+    "discoverBody": "See everyday life in other classes, generations and places.",
+    "showingAnswers": "Showing answers to this week’s question",
+    "showAll": "Show all",
+    "noAnswersTitle": "No answers yet",
+    "noAnswersBody": "Yours could be the first."
+  },
+  "weekly": {
+    "label": "This week’s question",
+    "postLabel": "Weekly question",
+    "answer": "Answer",
+    "readAnswers_one": "Read {{count}} answer",
+    "readAnswers_other": "Read {{count}} answers",
+    "optional": "Optional. Answer whenever you like, or not at all.",
+    "questions": {
+      "ordinaryDay": "What did an ordinary moment look like for you today?",
+      "smallJoy": "What small thing made you smile this week?",
+      "childhoodSound": "What sound or song takes you straight back to childhood?",
+      "lately": "What have you been thinking about lately?",
+      "view": "What can you see from where you are right now?",
+      "comfortFood": "What do you eat when you need comfort?",
+      "askClass": "What would you like to ask people born in your year?",
+      "routine": "What’s one part of your daily routine you’d keep forever?"
+    }
+  },
+  "generation": {
+    "eyebrow": "Your generation",
     "subtitle": "{{start}}–{{end}} · {{tagline}}",
+    "note": "A wider space shared by everyone born {{start}}–{{end}}. Your class is still home.",
     "feedLabel": "Generation feed",
     "emptyTitle": "Quiet for now",
     "emptyBody": "Be the first to say hello to your generation.",
     "emptyAction": "Write a post"
   },
-  "myClass": {
-    "eyebrow": "Your class · {{generation}}",
-    "subtitle_one": "Everyone born in {{year}}. {{count}} voice here so far.",
-    "subtitle_other": "Everyone born in {{year}}. {{count}} voices here so far.",
-    "feedLabel": "Class feed",
-    "emptyTitle": "Your class is just getting started",
-    "emptyBody": "Say hi to the rest of the {{className}}.",
-    "emptyAction": "Write to your class",
-    "compose": "New post in {{className}}"
-  },
   "explore": {
-    "title": "Explore classes",
-    "subtitle": "Read how other years see things. You can post only in your own class.",
-    "noPosts": "No posts yet",
     "posts_one": "{{count}} post",
     "posts_other": "{{count}} posts",
     "yourClass": "Your class",
-    "moreSoon": "Other generations will open in a future version."
+    "title": "Explore",
+    "subtitle": "Different years, different places, everyday lives. Here you read; you post in your own class.",
+    "searchLabel": "Find a class by birth year",
+    "searchPlaceholder": "e.g. 1995",
+    "searchGo": "Go",
+    "searchInvalid": "Enter a year like 1999.",
+    "searchNotOpen": "There’s no class for {{year}} yet.",
+    "classesTitle": "Classes",
+    "closedNote": "{{generation}} isn’t open for sign-up yet. You can read sample posts.",
+    "worldTitle": "Everyday life around the world",
+    "worldBody": "Recent posts from other classes.",
+    "regionFilter": "Filter by country or region",
+    "allRegions": "All",
+    "showMore": "Show more",
+    "worldEmptyTitle": "Nothing to discover yet",
+    "worldEmptyBody": "Posts from other classes will appear here.",
+    "yourClassShort": "Your class"
   },
   "classView": {
-    "visiting": "Visiting",
     "backToExplore": "Back to Explore",
     "readOnlyTitle": "Read only.",
     "readOnlyBody": "Posting and reactions are for the {{className}}.",
     "emptyTitle": "Nothing here yet",
     "emptyBody": "The {{className}} hasn't posted anything so far.",
     "notFoundTitle": "Class not found",
-    "notFoundBody": "That class isn't part of your generation."
+    "notFoundBody": "There’s no class for that year yet.",
+    "visitingIn": "Visiting · {{generation}}"
   },
   "composer": {
     "title": "New post",
@@ -98,10 +151,30 @@
     "classHint": "Only your class can post here. Everyone in {{generation}} can read it.",
     "generationHint": "Shared with all of {{generation}}.",
     "bodyLabel": "Post",
-    "placeholder": "What's on your mind?",
+    "placeholder": "Anything is fine: today, a thought, a small thing.",
     "postingAs": "Posting to <strong>{{destination}}</strong> as <strong>{{name}}</strong>",
     "deviceNote": "Demo: posts are saved on this device only.",
-    "posted": "Posted to {{destination}}"
+    "posted": "Posted to {{destination}}",
+    "answerTitle": "Your answer",
+    "answerPlaceholder": "Write your answer…",
+    "answerNote": "Answers are posted to {{className}}.",
+    "startersLabel": "Not sure what to write?",
+    "starters": {
+      "today": "Today",
+      "thinking": "On my mind",
+      "small": "A small thing",
+      "memory": "A memory",
+      "life": "Life right now",
+      "ask": "Ask your class"
+    },
+    "starterPlaceholders": {
+      "today": "What happened today, even if it was nothing special?",
+      "thinking": "What’s been on your mind lately?",
+      "small": "A small moment worth keeping…",
+      "memory": "Something you remember from growing up…",
+      "life": "What does life look like for you right now?",
+      "ask": "What would you like to ask people born in {{year}}?"
+    }
   },
   "post": {
     "reactions": "Reactions",
@@ -127,7 +200,8 @@
     "bioLabel": "Bio",
     "bioPlaceholder": "A line or two about you",
     "lockedNote": "Birth year, generation and class ({{className}}) are set at sign-up and can't be changed here.",
-    "updated": "Profile updated"
+    "updated": "Profile updated",
+    "noRegion": "Region not shown"
   },
   "settings": {
     "title": "Settings",
@@ -152,6 +226,9 @@
     "nameTooLong": "Display names can be up to {{max}} characters.",
     "bioTooLong": "Bios can be up to {{max}} characters.",
     "generationClosed": "gens is open to Gen Z for now.",
-    "generic": "Something went wrong. Please try again."
+    "generic": "Something went wrong. Please try again.",
+    "invalidRegion": "Choose a country or region from the list.",
+    "promptClassOnly": "Weekly question answers go to your class.",
+    "promptExpired": "This week’s question has changed. Please try again."
   }
 }

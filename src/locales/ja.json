@@ -1,6 +1,5 @@
 {
   "common": {
-    "appName": "gens",
     "cancel": "キャンセル",
     "close": "閉じる",
     "save": "保存",
@@ -16,9 +15,9 @@
   "nav": {
     "main": "メイン",
     "home": "ホーム",
-    "myClass": "マイクラス",
     "explore": "探す",
-    "profile": "プロフィール"
+    "profile": "プロフィール",
+    "generation": "世代"
   },
   "labels": {
     "classOf": "{{year}}年生まれ",
@@ -28,9 +27,21 @@
     "born": "生まれ年"
   },
   "generations": {
-    "millennials": { "name": "ミレニアル世代", "short": "ミレニアル", "tagline": "ダイヤルアップからブロードバンドへ。" },
-    "gen-z": { "name": "Z世代", "short": "Z世代", "tagline": "ポケットにインターネットがある時代に育った世代。" },
-    "gen-alpha": { "name": "α世代", "short": "α世代", "tagline": "まだ始まったばかり。" }
+    "millennials": {
+      "name": "ミレニアル世代",
+      "short": "ミレニアル",
+      "tagline": "ダイヤルアップからブロードバンドへ。"
+    },
+    "gen-z": {
+      "name": "Z世代",
+      "short": "Z世代",
+      "tagline": "ポケットにインターネットがある時代に育った世代。"
+    },
+    "gen-alpha": {
+      "name": "α世代",
+      "short": "α世代",
+      "tagline": "まだ始まったばかり。"
+    }
   },
   "time": {
     "justNow": "たった今",
@@ -39,51 +50,93 @@
     "days": "{{count}}日前"
   },
   "welcome": {
-    "headline": "同じ時代に育った人たちと、穏やかにつながる場所。",
-    "lead": "自分の世代に参加して、同い年のクラスを見つけ、ほかの年の人たちの見方にも触れてみましょう。",
-    "language": "言語",
+    "headline": "ひとりじゃない。",
+    "lead": "同じ年に生まれた仲間が、世界中にいる。ちがう人生を、同じ時代に。",
     "nameLabel": "表示名",
     "namePlaceholder": "ほかの人に表示される名前",
     "yearLabel": "生まれ年",
     "yearPlaceholder": "生まれ年を選択",
     "yearOption": "{{year}}年",
     "yearHelp": "現在 gens は{{generation}}（{{start}}〜{{end}}年生まれ）向けに公開しています。登録後にクラスは変更できません。",
-    "pickYear": "生まれ年を選ぶと、所属する世代とクラスが表示されます。",
-    "start": "はじめる"
+    "pickYear": "生まれ年を選ぶと、あなたのクラスが見つかります。",
+    "start": "はじめる",
+    "regionLabel": "国・地域（任意）",
+    "regionNone": "表示しない",
+    "regionHelp": "投稿に表示されるのは国・地域名だけです。詳しい位置情報は収集しません。"
   },
   "home": {
+    "eyebrow": "あなたのクラス · {{generation}}",
+    "tagline": "ちがう人生、同じ生まれ年。",
+    "belonging": "{{year}}年に生まれた人たちが、世界のどこかでそれぞれの一日を過ごしています。",
+    "regionsLabel": "投稿が届いている地域",
+    "feedLabel": "クラスフィード",
+    "emptyTitle": "いまは静かなクラスです",
+    "emptyBody": "どこかで、{{year}}年生まれの誰かもこの画面を見ているかもしれません。小さな投稿ひとつで「ここにいる」と伝えられます。",
+    "emptyAction": "ひとこと書いてみる",
+    "compose": "{{className}}に投稿",
+    "discoverTitle": "ほかの年に出会う",
+    "discoverBody": "ほかのクラスや世代、ちがう場所の日常をのぞいてみましょう。",
+    "showingAnswers": "今週のお題への回答を表示中",
+    "showAll": "すべて表示",
+    "noAnswersTitle": "まだ回答はありません",
+    "noAnswersBody": "最初のひとりになってみませんか。"
+  },
+  "weekly": {
+    "label": "今週のお題",
+    "postLabel": "今週のお題",
+    "answer": "答える",
+    "readAnswers_other": "回答を読む（{{count}}）",
+    "optional": "参加は自由です。気が向いたときにどうぞ。",
+    "questions": {
+      "ordinaryDay": "今日のなんでもない瞬間は、どんな感じでしたか？",
+      "smallJoy": "今週、小さくうれしかったことは？",
+      "childhoodSound": "聞くと子どものころに戻れる音や曲は？",
+      "lately": "最近よく考えていることは？",
+      "view": "いまいる場所から、何が見えますか？",
+      "comfortFood": "ほっとしたいときに食べるものは？",
+      "askClass": "同い年の人に聞いてみたいことは？",
+      "routine": "ずっと続けたい毎日の習慣は？"
+    }
+  },
+  "generation": {
+    "eyebrow": "あなたの世代",
     "subtitle": "{{start}}〜{{end}}年生まれ · {{tagline}}",
+    "note": "{{start}}〜{{end}}年生まれのみんなで共有する、少し広い場所です。いつもの居場所はあなたのクラスです。",
     "feedLabel": "世代フィード",
     "emptyTitle": "まだ静かです",
     "emptyBody": "最初のひとことを、同じ世代に届けてみましょう。",
     "emptyAction": "投稿する"
   },
-  "myClass": {
-    "eyebrow": "あなたのクラス · {{generation}}",
-    "subtitle_other": "{{year}}年に生まれたみんなの場所。これまでに{{count}}人が投稿しています。",
-    "feedLabel": "クラスフィード",
-    "emptyTitle": "あなたのクラスはこれからです",
-    "emptyBody": "{{className}}のみんなにあいさつしてみましょう。",
-    "emptyAction": "クラスに投稿する",
-    "compose": "{{className}}に投稿"
-  },
   "explore": {
-    "title": "クラスを探す",
-    "subtitle": "ほかの年の人たちの声を読んでみましょう。投稿できるのは自分のクラスだけです。",
-    "noPosts": "まだ投稿はありません",
     "posts_other": "{{count}}件の投稿",
     "yourClass": "あなたのクラス",
-    "moreSoon": "ほかの世代は今後のバージョンで公開予定です。"
+    "title": "探す",
+    "subtitle": "ちがう年、ちがう場所の日常。ここでは読むだけで、投稿は自分のクラスで。",
+    "searchLabel": "生まれ年でクラスを探す",
+    "searchPlaceholder": "例：1995",
+    "searchGo": "見る",
+    "searchInvalid": "1999のように西暦4桁で入力してください。",
+    "searchNotOpen": "{{year}}年のクラスはまだありません。",
+    "classesTitle": "クラス",
+    "closedNote": "{{generation}}はまだ参加受付前です。サンプル投稿を読めます。",
+    "worldTitle": "世界のどこかの日常",
+    "worldBody": "ほかのクラスの最近の投稿です。",
+    "regionFilter": "国・地域で絞り込む",
+    "allRegions": "すべて",
+    "showMore": "もっと見る",
+    "worldEmptyTitle": "まだ見つかる投稿はありません",
+    "worldEmptyBody": "ほかのクラスの投稿がここに表示されます。",
+    "yourClassShort": "自分のクラス"
   },
   "classView": {
-    "visiting": "見学中",
     "backToExplore": "クラス一覧に戻る",
     "readOnlyTitle": "閲覧のみ。",
     "readOnlyBody": "投稿とリアクションは{{className}}の人だけができます。",
     "emptyTitle": "まだ何もありません",
     "emptyBody": "{{className}}の投稿はまだありません。",
     "notFoundTitle": "クラスが見つかりません",
-    "notFoundBody": "このクラスはあなたの世代に含まれていません。"
+    "notFoundBody": "その年のクラスはまだありません。",
+    "visitingIn": "見学中 · {{generation}}"
   },
   "composer": {
     "title": "新しい投稿",
@@ -96,10 +149,30 @@
     "classHint": "投稿できるのは同じクラスの人だけです。{{generation}}の全員が読めます。",
     "generationHint": "{{generation}}の全員に公開されます。",
     "bodyLabel": "投稿",
-    "placeholder": "いま考えていることは？",
+    "placeholder": "なんでも大丈夫。今日のこと、考えごと、小さな出来事。",
     "postingAs": "<strong>{{name}}</strong>として<strong>{{destination}}</strong>に投稿します",
     "deviceNote": "デモ：投稿はこの端末にのみ保存されます。",
-    "posted": "{{destination}}に投稿しました"
+    "posted": "{{destination}}に投稿しました",
+    "answerTitle": "回答する",
+    "answerPlaceholder": "あなたの答えを…",
+    "answerNote": "回答は{{className}}に投稿されます。",
+    "startersLabel": "何を書くか迷ったら",
+    "starters": {
+      "today": "今日のこと",
+      "thinking": "考えていること",
+      "small": "小さな出来事",
+      "memory": "思い出",
+      "life": "いまの暮らし",
+      "ask": "同い年に聞きたい"
+    },
+    "starterPlaceholders": {
+      "today": "今日あったこと。特別じゃなくて大丈夫。",
+      "thinking": "最近考えていることは？",
+      "small": "残しておきたい小さな瞬間…",
+      "memory": "子どものころの思い出…",
+      "life": "いまの暮らしは、どんな感じ？",
+      "ask": "{{year}}年生まれの人に聞いてみたいことは？"
+    }
   },
   "post": {
     "reactions": "リアクション",
@@ -125,7 +198,8 @@
     "bioLabel": "自己紹介",
     "bioPlaceholder": "あなたについてひとことふたこと",
     "lockedNote": "生まれ年・世代・クラス（{{className}}）は登録時に決まり、ここでは変更できません。",
-    "updated": "プロフィールを更新しました"
+    "updated": "プロフィールを更新しました",
+    "noRegion": "地域は非表示"
   },
   "settings": {
     "title": "設定",
@@ -150,6 +224,9 @@
     "nameTooLong": "表示名は{{max}}文字までです。",
     "bioTooLong": "自己紹介は{{max}}文字までです。",
     "generationClosed": "現在 gens はZ世代のみ登録できます。",
-    "generic": "問題が発生しました。もう一度お試しください。"
+    "generic": "問題が発生しました。もう一度お試しください。",
+    "invalidRegion": "リストから国・地域を選んでください。",
+    "promptClassOnly": "今週のお題への回答は自分のクラスに投稿されます。",
+    "promptExpired": "今週のお題が変わりました。もう一度お試しください。"
   }
 }

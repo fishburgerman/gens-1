@@ -86,3 +86,12 @@ export const SlidersIcon = (p: IconProps) => (
 export const GlobeIcon = (p: IconProps) => (
   <Base {...p}><circle cx="12" cy="12" r="8.3" /><path d="M3.9 12h16.2M12 3.7c2.3 2.3 3.4 5.1 3.4 8.3s-1.1 6-3.4 8.3c-2.3-2.3-3.4-5.1-3.4-8.3s1.1-6 3.4-8.3z" /></Base>
 )
+export const BubbleIcon = (p: IconProps) => (
+  <Base {...p}><path d="M5 6.5h14v9H11l-4 3.2v-3.2H5z" /></Base>
+)
+export const SearchIcon = (p: IconProps) => (
+  <Base {...p}><circle cx="10.8" cy="10.8" r="5.8" /><path d="m15.2 15.2 4.3 4.3" /></Base>
+)
+export const PinIcon = (p: IconProps) => (
+  <Base {...p}><path d="M12 20s-5.5-5.2-5.5-9.5a5.5 5.5 0 0 1 11 0C17.5 14.8 12 20 12 20z" /><circle cx="12" cy="10.5" r="1.9" /></Base>
+)

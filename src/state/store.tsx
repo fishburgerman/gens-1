@@ -3,16 +3,16 @@ import type { ReactNode } from 'react'
 import { createSeedPosts } from '../data/seed'
 import { buildPost, buildProfile, toggleReaction, updateProfile } from '../lib/rules'
 import { DATA_VERSION, clearData, loadData, saveData } from '../lib/storage'
-import type { AppData, Post, PostScope, Profile, ReactionType } from '../types'
+import type { AppData, Post, PostPrompt, PostScope, Profile, ReactionType } from '../types'
 
 interface Store {
   profile: Profile | null
   posts: Post[]
   /** false when the browser refused to persist the last change */
   persisted: boolean
-  createProfile(displayName: string, birthYear: number): void
-  editProfile(changes: { displayName: string; bio: string }): void
-  createPost(scope: PostScope, body: string): Post
+  createProfile(displayName: string, birthYear: number, region: string | null): void
+  editProfile(changes: { displayName: string; bio: string; region: string | null }): void
+  createPost(scope: PostScope, body: string, prompt?: PostPrompt | null): Post
   react(postId: string, type: ReactionType): void
   resetDemo(): void
 }
@@ -31,21 +31,23 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     setPersisted(saveData(data))
   }, [data])
 
-  const createProfile = useCallback((displayName: string, birthYear: number) => {
-    const profile = buildProfile(displayName, birthYear)
+  const createProfile = useCallback((displayName: string, birthYear: number, region: string | null) => {
+    const profile = buildProfile(displayName, birthYear, region)
     setData((d) => ({ ...d, profile }))
   }, [])
 
   const editProfile = useCallback(
-    (changes: { displayName: string; bio: string }) => {
+    (changes: { displayName: string; bio: string; region: string | null }) => {
       if (!data.profile) return
       const profile = updateProfile(data.profile, changes)
       setData((d) => ({
         ...d,
         profile,
-        // keep the author name on your own posts in sync
+        // keep name and region on your own posts in sync (hiding your region hides it everywhere)
         posts: d.posts.map((p) =>
-          p.authorId === profile.id ? { ...p, authorName: profile.displayName } : p,
+          p.authorId === profile.id
+            ? { ...p, authorName: profile.displayName, authorRegion: profile.region }
+            : p,
         ),
       }))
     },
@@ -53,9 +55,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   )
 
   const createPost = useCallback(
-    (scope: PostScope, body: string) => {
-      // Validation (membership + content) happens in buildPost and throws RuleError.
-      const post = buildPost(data.profile, scope, body)
+    (scope: PostScope, body: string, prompt: PostPrompt | null = null) => {
+      // Validation (membership, content, weekly question) happens in buildPost and throws RuleError.
+      const post = buildPost(data.profile, scope, body, prompt)
       setData((d) => ({ ...d, posts: [post, ...d.posts] }))
       return post
     },

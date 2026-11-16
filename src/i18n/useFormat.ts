@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { getGeneration } from '../config/generations'
+import type { WeeklyQuestionId } from '../config/weeklyQuestions'
 import type { GenerationId } from '../config/generations'
 import { RuleError } from '../lib/rules'
 import { relativeParts } from '../lib/time'
@@ -49,6 +50,16 @@ export function useFormat() {
       minute: '2-digit',
     })
 
+  /** Country / region names come from the browser (Intl), already localized. */
+  const regionName = (code: string) => {
+    try {
+      return new Intl.DisplayNames([locale], { type: 'region' }).of(code) ?? code
+    } catch {
+      return code
+    }
+  }
+  const questionText = (id: WeeklyQuestionId) => t(`weekly.questions.${id}`)
+
   const errorMessage = (e: unknown) =>
     e instanceof RuleError ? t(`errors.${e.code}`, e.params) : t('errors.generic')
 
@@ -62,6 +73,8 @@ export function useFormat() {
     generationTagline,
     relativeTime,
     fullTime,
+    regionName,
+    questionText,
     errorMessage,
   }
 }

@@ -52,3 +52,42 @@ describe('storage', () => {
     expect(loadData(s)).toBeNull()
   })
 })
+
+describe('migration v1 -> v2', () => {
+  const v1Profile = { id: 'user_old', displayName: 'Old', birthYear: 2001, generationId: 'gen-z', bio: 'hi', createdAt: '2026-01-01T00:00:00.000Z' }
+  const v1UserPost = {
+    id: 'post_old', authorId: 'user_old', authorName: 'Old', authorClassYear: 2001,
+    scope: { kind: 'class', generationId: 'gen-z', classYear: 2001 }, body: 'my post',
+    createdAt: '2026-01-02T00:00:00.000Z', reactions: { same: [], warm: [], thoughtful: [] }, isDemo: false,
+  }
+  const v1Demo = {
+    id: 'demo_post_1', authorId: 'demo_author_mayar', authorName: 'Maya R.', authorClassYear: 2001,
+    scope: { kind: 'generation', generationId: 'gen-z' }, body: 'old sample',
+    createdAt: '2026-01-02T00:00:00.000Z', reactions: { same: ['user_old'], warm: [], thoughtful: [] }, isDemo: true,
+  }
+  const raw = JSON.stringify({ version: 1, profile: v1Profile, posts: [v1UserPost, v1Demo] })
+
+  it('keeps the profile and adds an empty region', () => {
+    const data = parseData(raw)!
+    expect(data.version).toBe(DATA_VERSION)
+    expect(data.profile).toEqual({ ...v1Profile, region: null })
+  })
+  it('keeps user posts unchanged apart from the new empty fields', () => {
+    const data = parseData(raw)!
+    expect(data.posts.find((p) => p.id === 'post_old')).toEqual({ ...v1UserPost, authorRegion: null, prompt: null })
+  })
+  it('refreshes sample posts and keeps the user’s reactions on them', () => {
+    const data = parseData(raw)!
+    const demo = data.posts.filter((p) => p.isDemo)
+    expect(demo.length).toBe(createSeedPosts().length)
+    const maya = demo.find((p) => p.id === 'demo_post_1')!
+    expect(maya.reactions.same).toContain('user_old')
+    expect(maya.authorRegion).not.toBeUndefined()
+  })
+  it('works without a profile', () => {
+    const data = parseData(JSON.stringify({ version: 1, profile: null, posts: [v1Demo] }))!
+    expect(data.profile).toBeNull()
+    expect(data.posts.every((p) => p.isDemo)).toBe(true)
+  })
+})
+
